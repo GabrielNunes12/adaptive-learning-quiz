@@ -10,17 +10,34 @@ your [zone of proximal development](https://en.wikipedia.org/wiki/Zone_of_proxim
 
 - Before each learning session, generates a quiz artifact in Obsidian (or
   any markdown vault): a Mermaid concept map plus a bank of questions
-  tiered `Foundational` / `Intermediate` / `Edge` / `Expert`.
-- Runs the quiz in chat as clickable multiple-choice questions. Difficulty
-  adapts live — a correct answer moves up a tier, a wrong one moves down —
-  until each concept's edge is bracketed (highest tier answered right,
-  lowest answered wrong), then stops probing that concept. Budget: roughly
-  6-10 questions per session, not a long fixed survey.
+  tiered `Foundational` / `Intermediate` / `Edge` / `Expert`. Within a
+  concept, the first question asked is its broadest framing (the core
+  problem/idea), narrowing to specific mechanics as tiers climb.
+- Runs the quiz in chat as clickable multiple-choice questions, with the
+  correct answer's position varied across questions rather than defaulting
+  to the first slot. Difficulty adapts live — a correct answer moves up a
+  tier, a wrong one moves down — until each concept's edge is bracketed
+  (highest tier answered right, lowest answered wrong), then stops probing
+  that concept. Budget: roughly 6-10 questions per session, not a long
+  fixed survey.
 - Persists a `LEARNER_MODEL.md` per topic, so the next session starts
   probing one tier above the last confirmed edge instead of re-testing
   from scratch.
 - Hands the diagnosed gaps off to whatever teaching flow you use (spaced
   repetition, a `/teach`-style lesson loop, or your own).
+- Every 10th lesson in a topic triggers a **cumulative milestone review**
+  spanning that block of 10: if retention drops below 80%, the skill
+  writes a remediation lesson that re-teaches the gapped concepts by
+  climbing Bloom's Taxonomy (Remember → Understand → Apply → Analyze →
+  Evaluate → Create) with fresh analogies and examples, not a repeat of
+  the original explanation.
+- Ships a **prompt-technique toolkit** — five reusable moves (diagnose-
+  before-explaining, hint ladders instead of answers, transfer-test
+  questions, source-grounded true/false checks, oral exam with confidence
+  ratings) to reach for mid-session, beyond the placement quiz itself.
+- Keeps difficulty in the material, not the logistics: planning, sourcing,
+  verifying, and scheduling are the skill's job — the learner's effort
+  goes entirely into answering and reasoning.
 
 ## Install
 
