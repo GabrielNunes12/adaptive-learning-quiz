@@ -102,6 +102,116 @@ Mermaid diagram, code example, and a recall exercise, per
 at the tier that broke for each concept, not from the top; push back up
 to (but not past) the tier that was still wrong before correction.
 
+### 9. Every 10 lessons: cumulative milestone review (Bloom's remediation)
+
+After every 10th consecutive lesson in a topic's `lessons/` folder (lesson
+10, 20, 30, …), before starting lesson 11/21/31, run a **cumulative
+review** spanning that block of 10 (lesson N-9 through N) instead of the
+normal single-topic adaptive quiz.
+
+**a. Build the milestone quiz.** Same `quizzes/YYYY-MM-DD-quiz.md`
+location and tiered-item-bank format as step 3, but scope = one or more
+questions per concept across *all 10* lessons in the block, and the file
+name/heading is marked `Milestone Review — Lessons N-9 to N` so it's
+distinguishable from a normal per-session quiz. Run it adaptively per step
+4, same rules.
+
+**b. Score retention.** Retention % = correct-on-first-try answers ÷ total
+questions asked, across the whole milestone quiz. Record this in the
+quiz's `## Results` section alongside the per-concept breakdown.
+
+**c. Below 80% → find the gap and re-teach differently.** For each concept
+that broke, don't just repeat the original lesson's explanation — that
+reinforces the same (already-insufficient) encoding. Instead, write a
+**milestone remediation lesson** (next number in `lessons/`, e.g.
+`lessons/0011-milestone-review-bloom.md`) that re-teaches each gapped
+concept by climbing **Bloom's Taxonomy** deliberately, using framing,
+analogies, and examples the original lesson did *not* use:
+
+  1. **Remember** — restate the core fact plainly (not the original
+     lesson's wording).
+  2. **Understand** — explain it through a *different analogy or framing*
+     than the original lesson used.
+  3. **Apply** — a *new* worked example/scenario, not the one from the
+     original lesson.
+  4. **Analyze** — compare/contrast against a related-but-different
+     concept already taught (why does X differ from Y here).
+  5. **Evaluate** — a judgment question: given two constraints/options,
+     which is correct here and why.
+  6. **Create** — have the learner construct something themselves (write
+     a snippet, design a config, extend an example) that combines the
+     concept with something else already learned.
+
+  Not every gapped concept needs all six levels in full — but climb at
+  least through Apply, and use Analyze/Evaluate/Create for concepts that
+  keep resurfacing as gaps across multiple milestones (see
+  `LEARNER_MODEL.md` trend notes). The point is a **different cognitive
+  route to the same concept**, not a repeat of the original lesson.
+
+**d. Keep the folder structure as-is.** No new top-level folders — the
+milestone quiz goes in `quizzes/`, the remediation lesson goes in
+`lessons/` (numbered as the next lesson, just tagged as a milestone
+remediation in its title/heading), and results still update
+`LEARNER_MODEL.md` (step 7) and get a learning record (per
+`_learning-system/CLAUDE.md`'s learning-records convention) noting which
+concepts needed Bloom's-style remediation and why the first teaching
+didn't stick.
+
+**e. 80%+ on first try** → note the milestone as passed in
+`LEARNER_MODEL.md` (a `## Milestones` section or per-row trend note), no
+remediation lesson needed, proceed straight to the next lesson.
+
+## Prompt-technique toolkit
+
+Beyond the placement quiz itself, reach for these five techniques during a
+session — before/instead of straight explaining, while the learner is
+stuck, when checking retention, or when testing without help. `[ASSUNTO]`
+= the current topic; `[PROBLEMA]` = the concrete problem at hand. Pick
+whichever fits the moment rather than running all five every session.
+
+1. **Diagnóstico à trava** — before explaining `[ASSUNTO]`, diagnose what's
+   already known and where the main gap is: one question at a time,
+   adapting the next question to the answer just given, ending with a
+   named, specific blocking point (not a vague "you need review"). This is
+   the same spirit as the placement quiz above, usable mid-session on a
+   narrower slice too.
+2. **Peça pistas, não respostas** — when the learner is stuck on
+   `[PROBLEMA]`, don't give the answer or fix everything at once. Climb a
+   hint ladder: (1) a targeted question, (2) a reminder of the relevant
+   concept, (3) only the next step, (4) the full solution — only if
+   explicitly asked. Start at level 1 every time.
+3. **Transfira e ensine** — create 3 questions on `[ASSUNTO]`: one close to
+   what was studied, one in a different context, and one trap where the
+   concept looks applicable but isn't. Don't reveal which is which or give
+   answers until the learner responds to all three. Companion move: role
+   reversal — the learner teaches `[ASSUNTO]` back; interrupt whenever
+   they explain something wrong, skip a step, or use an undefined term;
+   push back on confused explanations without supplying the answer.
+4. **Confira fontes e erros** — when working from learner-supplied
+   material, answer strictly from those sources, then write 4 statements
+   about `[ASSUNTO]` (3 true, 1 false) without flagging which is false.
+   After the learner answers, show where their reasoning was right/wrong
+   and cite the exact spot in the source.
+5. **Teste sem IA** — run an oral exam on `[ASSUNTO]`: one question at a
+   time, no immediate correction. After each answer, ask for a 0-100%
+   confidence rating. At the end, compare correct/incorrect answers against
+   stated confidence to surface over/under-confidence, not just raw score.
+
+## Struggle allocation, question shape, answer ordering (learner directive, 2026-08-25)
+
+- **Logistics is the agent's job, not the learner's.** Planning, resource
+  discovery, verification, and scheduling happen automatically — never
+  ask the learner to do them. Difficulty should live entirely in the
+  material (real ZPD-probing, minimal hints, real production tasks), not
+  in friction around it.
+- **Broad → narrow within a concept.** The first question probed on a
+  concept should be its broadest framing (core problem/idea), narrowing
+  to specific mechanics as tiers climb — not just harder, but more
+  precise.
+- **Randomize correct-answer position.** Across `AskUserQuestion` calls
+  in a session, vary which option slot holds the correct answer — do
+  not default to always placing it first.
+
 ## Non-negotiables
 - Runs every session, every topic (Type A and Type B alike) — not just
   when a topic is new.
@@ -113,3 +223,8 @@ to (but not past) the tier that was still wrong before correction.
 - `LEARNER_MODEL.md` persists across sessions and must be updated at the
   end of every quiz — skipping this update breaks the "start one tier
   above last edge" optimization for next time.
+- Every 10th lesson in a topic triggers a cumulative milestone review
+  (step 9) before the next lesson starts. Below 80% retention requires a
+  Bloom's-Taxonomy remediation lesson, not a repeat of the original
+  explanation — the whole point is a different cognitive route to the
+  same concept.
