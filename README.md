@@ -72,3 +72,18 @@ MIT — use it, fork it, adapt it.
 `learning-loop` skill is based on. It's an Obsidian Excalidraw file, so open
 the `excalidraw/` folder as a vault to see the 17 screenshots it embeds.
 The screenshots sit next to it under their original names.
+
+## Also in this repo: `learning-loop`
+
+`learning-loop/` is a second skill. It runs a ten-mode learning loop
+(Interviewer → Mapmaker → Explainer → Socratic questioner → Examiner →
+Checker → Listener → Diagnostician → Sparring partner → Clerk) for any
+skill you want to practise: coding, technology concepts, or reasoning.
+Exercise sets are graded against hidden scenarios, with fixed pass/fail
+output.
+
+Install it the same way:
+
+```
+cp -r learning-loop ~/.claude/skills/
+```
