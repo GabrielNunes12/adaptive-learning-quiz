@@ -65,3 +65,10 @@ per topic) — adjust `SKILL.md` if your vault is organized differently.
 ## License
 
 MIT — use it, fork it, adapt it.
+
+## Also in this repo: the "AI can teach me anything" drawing
+
+`excalidraw/AI can teach me anything.md` is the Excalidraw board the
+`learning-loop` skill is based on. It's an Obsidian Excalidraw file, so open
+the `excalidraw/` folder as a vault to see the 17 screenshots it embeds.
+The screenshots sit next to it under their original names.
